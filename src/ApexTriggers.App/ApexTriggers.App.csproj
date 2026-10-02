@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>ApexTriggers</AssemblyName>
+    <RootNamespace>ApexTriggers.App</RootNamespace>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <Product>Apex Triggers</Product>
+    <!-- Forms are built in code, not in the designer; its serialization analyzer does not apply. -->
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
+    <!-- Strings.resx is English; Russian ships as the ru satellite assembly. -->
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApexTriggers.Core\ApexTriggers.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The typed Strings class is generated at build time into obj/; there is no designer file to keep in sync. -->
+    <EmbeddedResource Update="Resources\Strings.resx">
+      <StronglyTypedFileName>$(IntermediateOutputPath)Strings.Designer.cs</StronglyTypedFileName>
+      <StronglyTypedLanguage>CSharp</StronglyTypedLanguage>
+      <StronglyTypedNamespace>ApexTriggers.App.Resources</StronglyTypedNamespace>
+      <StronglyTypedClassName>Strings</StronglyTypedClassName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

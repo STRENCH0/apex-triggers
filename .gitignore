@@ -1,0 +1,18 @@
+# Build output
+bin/
+obj/
+publish/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Local only: stage-0 hardware tester and design/spec artifacts
+artifacts/
+src/ApexTriggers.Tester/
+
+# Claude Code local state
+.claude/settings.local.json

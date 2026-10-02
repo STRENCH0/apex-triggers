@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Common_Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="Common_Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Common_DefaultPreset" xml:space="preserve">
+    <value>Пресет по умолчанию</value>
+  </data>
+  <data name="Common_OutsideGames" xml:space="preserve">
+    <value>Вне игр</value>
+  </data>
+  <data name="Common_Running" xml:space="preserve">
+    <value>Запущена</value>
+  </data>
+  <data name="Common_NoController" xml:space="preserve">
+    <value>Геймпад не найден</value>
+  </data>
+  <data name="Common_StartWithWindows" xml:space="preserve">
+    <value>Запускать вместе с Windows</value>
+  </data>
+  <data name="Common_SpaceStationRunning" xml:space="preserve">
+    <value>Запущен Space Station</value>
+  </data>
+  <data name="Common_Checked" xml:space="preserve">
+    <value>отмечено</value>
+  </data>
+  <data name="Common_Unchecked" xml:space="preserve">
+    <value>не отмечено</value>
+  </data>
+  <data name="Common_Selected" xml:space="preserve">
+    <value>выбрано</value>
+  </data>
+  <data name="Status_Handed" xml:space="preserve">
+    <value>Передан в Steam Input</value>
+  </data>
+  <data name="Status_NotHanded" xml:space="preserve">
+    <value>Не передан в Steam Input</value>
+  </data>
+  <data name="Status_FirmwareCantHandOver" xml:space="preserve">
+    <value>Прошивка не поддерживает передачу</value>
+  </data>
+  <data name="Status_Cable" xml:space="preserve">
+    <value>провод</value>
+  </data>
+  <data name="Status_Dongle" xml:space="preserve">
+    <value>донгл 2.4G</value>
+  </data>
+  <data name="Status_ConnectionUnknown" xml:space="preserve">
+    <value>подключение ?</value>
+  </data>
+  <data name="Status_Charged" xml:space="preserve">
+    <value>заряжен</value>
+  </data>
+  <data name="Status_Charging" xml:space="preserve">
+    <value>заряжается</value>
+  </data>
+  <data name="Status_Battery" xml:space="preserve">
+    <value>батарея {0}%</value>
+  </data>
+  <data name="Status_UnknownDevice" xml:space="preserve">
+    <value>неизвестное устройство {0}</value>
+  </data>
+  <data name="Main_LeftTrigger" xml:space="preserve">
+    <value>Левый триггер</value>
+  </data>
+  <data name="Main_RightTrigger" xml:space="preserve">
+    <value>Правый триггер</value>
+  </data>
+  <data name="Main_Unsaved" xml:space="preserve">
+    <value>Есть несохранённые изменения</value>
+  </data>
+  <data name="Main_CopyPreset" xml:space="preserve">
+    <value>Копировать пресет…</value>
+  </data>
+  <data name="Main_Reset" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="Main_Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Main_LivePreview" xml:space="preserve">
+    <value>Живой предпросмотр на геймпаде</value>
+  </data>
+  <data name="Main_Games" xml:space="preserve">
+    <value>ИГРЫ</value>
+  </data>
+  <data name="Main_DefaultPresetText" xml:space="preserve">
+    <value>Действует, когда не запущена ни одна игра из списка, и для игр без своего пресета. Оба триггера — «Обычный», без сопротивления. Этот пресет не редактируется.</value>
+  </data>
+  <data name="Main_RemoveFromList" xml:space="preserve">
+    <value>Удалить из списка</value>
+  </data>
+  <data name="Main_DefaultSummary" xml:space="preserve">
+    <value>По умолчанию · без сопротивления</value>
+  </data>
+  <data name="Main_ConfirmSave" xml:space="preserve">
+    <value>Сохранить изменения пресета «{0}»?</value>
+  </data>
+  <data name="Main_DefaultSubtitle" xml:space="preserve">
+    <value>Применяется, когда не запущена ни одна игра из списка</value>
+  </data>
+  <data name="Main_ManualSource" xml:space="preserve">
+    <value>Вручную · {0}</value>
+  </data>
+  <data name="Main_NoOtherGames" xml:space="preserve">
+    <value>Других игр пока нет</value>
+  </data>
+  <data name="Main_ConfirmRemove" xml:space="preserve">
+    <value>Удалить «{0}» и его пресет?</value>
+  </data>
+  <data name="Main_RunningApplied" xml:space="preserve">
+    <value>Запущена · пресет применён</value>
+  </data>
+  <data name="Main_PlugIn" xml:space="preserve">
+    <value>подключите донгл или кабель</value>
+  </data>
+  <data name="Trigger_Travel" xml:space="preserve">
+    <value>ход 0–255</value>
+  </data>
+  <data name="Trigger_NoParams" xml:space="preserve">
+    <value>У режима нет параметров: триггер ходит свободно.</value>
+  </data>
+  <data name="Trigger_VibrationExperimental" xml:space="preserve">
+    <value>Экспериментально: вибрация игры передаётся в курок. Под Steam Input проверено вибрацией из тестера, в играх — ещё нет.</value>
+  </data>
+  <data name="Zone_Normal" xml:space="preserve">
+    <value>Без сопротивления</value>
+  </data>
+  <data name="Zone_Race" xml:space="preserve">
+    <value>Сопротивление с позиции {0}</value>
+  </data>
+  <data name="Zone_Recoil" xml:space="preserve">
+    <value>Вибрация после позиции {0}</value>
+  </data>
+  <data name="Zone_Sniper" xml:space="preserve">
+    <value>Упор {0}–{1}, затем проламывается</value>
+  </data>
+  <data name="Zone_Lock" xml:space="preserve">
+    <value>Упор на позиции {0}, ось цифровая</value>
+  </data>
+  <data name="Zone_Vibration" xml:space="preserve">
+    <value>Дублирует вибрацию рукояток</value>
+  </data>
+  <data name="Mode_Normal" xml:space="preserve">
+    <value>Обычный</value>
+  </data>
+  <data name="Mode_Race" xml:space="preserve">
+    <value>Гоночный</value>
+  </data>
+  <data name="Mode_Recoil" xml:space="preserve">
+    <value>Отдача</value>
+  </data>
+  <data name="Mode_Sniper" xml:space="preserve">
+    <value>Снайпер</value>
+  </data>
+  <data name="Mode_Lock" xml:space="preserve">
+    <value>Блокировка</value>
+  </data>
+  <data name="Mode_Vibration" xml:space="preserve">
+    <value>Вибрация</value>
+  </data>
+  <data name="Param_Race_start" xml:space="preserve">
+    <value>Начало сопротивления</value>
+  </data>
+  <data name="Param_Race_strength" xml:space="preserve">
+    <value>Сила сопротивления</value>
+  </data>
+  <data name="Param_Recoil_start" xml:space="preserve">
+    <value>Начало вибрации</value>
+  </data>
+  <data name="Param_Recoil_press" xml:space="preserve">
+    <value>Сила нажатия для старта</value>
+  </data>
+  <data name="Param_Recoil_strength" xml:space="preserve">
+    <value>Сила вибрации</value>
+  </data>
+  <data name="Param_Recoil_frequency" xml:space="preserve">
+    <value>Частота вибрации</value>
+  </data>
+  <data name="Param_Recoil_match" xml:space="preserve">
+    <value>Ось с точки начала вибрации</value>
+  </data>
+  <data name="Param_Sniper_start" xml:space="preserve">
+    <value>Начало пролома</value>
+  </data>
+  <data name="Param_Sniper_travel" xml:space="preserve">
+    <value>Длина пролома</value>
+  </data>
+  <data name="Param_Sniper_resistance" xml:space="preserve">
+    <value>Сопротивление пролома</value>
+  </data>
+  <data name="Param_Sniper_match" xml:space="preserve">
+    <value>Ось с точки начала пролома</value>
+  </data>
+  <data name="Param_Lock_start" xml:space="preserve">
+    <value>Позиция блокировки</value>
+  </data>
+  <data name="Param_Vibration_scale" xml:space="preserve">
+    <value>Коэффициент интенсивности</value>
+  </data>
+  <data name="Param_Vibration_threshold" xml:space="preserve">
+    <value>Порог вибрации</value>
+  </data>
+  <data name="Param_Vibration_stroke" xml:space="preserve">
+    <value>Диапазон хода</value>
+  </data>
+  <data name="Param_Vibration_frequency" xml:space="preserve">
+    <value>Частота</value>
+  </data>
+  <data name="AddGame_Title" xml:space="preserve">
+    <value>Добавить игру</value>
+  </data>
+  <data name="AddGame_Search" xml:space="preserve">
+    <value>Поиск в библиотеке Steam</value>
+  </data>
+  <data name="AddGame_Placeholder" xml:space="preserve">
+    <value>Название игры</value>
+  </data>
+  <data name="AddGame_NotInSteam" xml:space="preserve">
+    <value>Игры нет в Steam?</value>
+  </data>
+  <data name="AddGame_NotInSteamHint" xml:space="preserve">
+    <value>Укажите её exe — игра будет распознаваться по этому процессу.</value>
+  </data>
+  <data name="AddGame_ChooseExe" xml:space="preserve">
+    <value>Выбрать exe…</value>
+  </data>
+  <data name="AddGame_Reading" xml:space="preserve">
+    <value>Читаю библиотеку Steam…</value>
+  </data>
+  <data name="AddGame_SteamNotFound" xml:space="preserve">
+    <value>Steam не найден — добавьте игру через exe.</value>
+  </data>
+  <data name="AddGame_Found_One" xml:space="preserve">
+    <value>Найдено {0} в {1} библиотеке Steam</value>
+  </data>
+  <data name="AddGame_Found_Many" xml:space="preserve">
+    <value>Найдено {0} в {1} библиотеках Steam</value>
+  </data>
+  <data name="AddGame_ExeTitle" xml:space="preserve">
+    <value>Exe игры</value>
+  </data>
+  <data name="AddGame_ExeFilter" xml:space="preserve">
+    <value>Программы (*.exe)|*.exe</value>
+  </data>
+  <data name="AddGame_AlreadyListed" xml:space="preserve">
+    <value>Эта игра уже в списке.</value>
+  </data>
+  <data name="AddGame_InList" xml:space="preserve">
+    <value>В списке</value>
+  </data>
+  <data name="Settings_SpaceStationText" xml:space="preserve">
+    <value>Он может перезаписывать флаг передачи и эффекты триггеров. Закройте Space Station и уберите его из автозагрузки.</value>
+  </data>
+  <data name="Settings_HowToTurnOff" xml:space="preserve">
+    <value>Как отключить</value>
+  </data>
+  <data name="Settings_HowToSteps" xml:space="preserve">
+    <value>1. Закройте Space Station: значок в трее → Выход.
+2. Win+R → services.msc → «Flydigi Space Station Service» → Остановить.
+3. Там же: Тип запуска → «Вручную», чтобы служба не стартовала с Windows.
+
+Space Station понадобится только для обновления прошивки — тогда запустите его вручную.</value>
+  </data>
+  <data name="Settings_Controller" xml:space="preserve">
+    <value>Геймпад</value>
+  </data>
+  <data name="Settings_Model" xml:space="preserve">
+    <value>Модель</value>
+  </data>
+  <data name="Settings_Connection" xml:space="preserve">
+    <value>Подключение</value>
+  </data>
+  <data name="Settings_NotConnected" xml:space="preserve">
+    <value>не подключён</value>
+  </data>
+  <data name="Settings_Firmware" xml:space="preserve">
+    <value>Прошивка</value>
+  </data>
+  <data name="Settings_HandoverOn" xml:space="preserve">
+    <value>Передача в Steam Input включена</value>
+  </data>
+  <data name="Settings_HandoverOff" xml:space="preserve">
+    <value>Передача в Steam Input выключена</value>
+  </data>
+  <data name="Settings_OwnerNote" xml:space="preserve">
+    <value>Владелец: {0}. Флаг ставится один раз при подключении и во время работы не переключается.</value>
+  </data>
+  <data name="Settings_FirmwareNote" xml:space="preserve">
+    <value>Нужна прошивка {0} или новее. Обновите её в Space Station. Триггеры при этом настраиваются как обычно.</value>
+  </data>
+  <data name="Settings_PlainXInput" xml:space="preserve">
+    <value>Steam видит пад как обычный XInput: без гироскопа и паддлов.</value>
+  </data>
+  <data name="Settings_ReturnToNormal" xml:space="preserve">
+    <value>Вернуть в обычный режим</value>
+  </data>
+  <data name="Settings_HandToSteam" xml:space="preserve">
+    <value>Передать в Steam Input</value>
+  </data>
+  <data name="Settings_HandoverWarning" xml:space="preserve">
+    <value>Если Стим запущен, он может сменить идентификатор пада и набор раскладок Steam Input. Продолжить?</value>
+  </data>
+  <data name="Settings_AutoApply" xml:space="preserve">
+    <value>Автоприменение</value>
+  </data>
+  <data name="Settings_ApplyOnGameStart" xml:space="preserve">
+    <value>Применять пресет при запуске игры, при выходе — «Обычный»</value>
+  </data>
+  <data name="Settings_ResendOnReconnect" xml:space="preserve">
+    <value>Повторно отправлять пресет при переподключении и выходе геймпада из сна</value>
+  </data>
+  <data name="Settings_PollInterval" xml:space="preserve">
+    <value>Интервал проверки игр</value>
+  </data>
+  <data name="Settings_Poll1" xml:space="preserve">
+    <value>1 секунду</value>
+  </data>
+  <data name="Settings_Poll2" xml:space="preserve">
+    <value>2 секунды</value>
+  </data>
+  <data name="Settings_Poll5" xml:space="preserve">
+    <value>5 секунд</value>
+  </data>
+  <data name="Settings_PollLabel" xml:space="preserve">
+    <value>Проверять запущенные игры каждые</value>
+  </data>
+  <data name="Settings_App" xml:space="preserve">
+    <value>Приложение</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Язык интерфейса</value>
+  </data>
+  <data name="Settings_MinimizeToTray" xml:space="preserve">
+    <value>При закрытии окна сворачивать в трей</value>
+  </data>
+  <data name="Settings_NotifyOnPresetChange" xml:space="preserve">
+    <value>Показывать уведомление при смене пресета</value>
+  </data>
+  <data name="Settings_Export" xml:space="preserve">
+    <value>Экспорт пресетов</value>
+  </data>
+  <data name="Settings_Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="Settings_LogFolder" xml:space="preserve">
+    <value>Папка логов</value>
+  </data>
+  <data name="Settings_Data" xml:space="preserve">
+    <value>Данные</value>
+  </data>
+  <data name="Settings_ImportResult" xml:space="preserve">
+    <value>Добавлено игр: {0}, обновлено пресетов: {1}.</value>
+  </data>
+  <data name="Tray_StatusHanded" xml:space="preserve">
+    <value>передан в Steam Input</value>
+  </data>
+  <data name="Tray_StatusConnected" xml:space="preserve">
+    <value>подключён</value>
+  </data>
+  <data name="Tray_StatusNoController" xml:space="preserve">
+    <value>нет геймпада</value>
+  </data>
+  <data name="Tray_OutsideGames" xml:space="preserve">
+    <value>вне игр</value>
+  </data>
+  <data name="Tray_PlugIn" xml:space="preserve">
+    <value>Подключите донгл или кабель</value>
+  </data>
+  <data name="Tray_Now" xml:space="preserve">
+    <value>Сейчас: {0}</value>
+  </data>
+  <data name="Tray_Open" xml:space="preserve">
+    <value>Открыть Apex Triggers</value>
+  </data>
+  <data name="Tray_Pause" xml:space="preserve">
+    <value>Приостановить автоприменение</value>
+  </data>
+  <data name="Tray_ResetTriggers" xml:space="preserve">
+    <value>Сбросить триггеры до «Обычного»</value>
+  </data>
+  <data name="Tray_Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Tray_Exit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="Notify_PresetApplied" xml:space="preserve">
+    <value>Пресет применён: {0}</value>
+  </data>
+  <data name="Notify_HandedTitle" xml:space="preserve">
+    <value>Геймпад передан в Steam Input</value>
+  </data>
+  <data name="Notify_HandedText" xml:space="preserve">
+    <value>{0} подключён ({1}). Steam видит его как Apex 5 с гироскопом и паддлами.</value>
+  </data>
+  <data name="Notify_FirmwareText" xml:space="preserve">
+    <value>Для Steam Input нужна прошивка {0} или новее. Триггеры при этом настраиваются как обычно.</value>
+  </data>
+  <data name="Notify_SpaceStationText" xml:space="preserve">
+    <value>Он может перезаписывать настройки триггеров. Откройте настройки, чтобы узнать, как его отключить.</value>
+  </data>
+</root>

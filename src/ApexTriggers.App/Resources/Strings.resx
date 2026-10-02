@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Common_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Common_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Common_DefaultPreset" xml:space="preserve">
+    <value>Default preset</value>
+  </data>
+  <data name="Common_OutsideGames" xml:space="preserve">
+    <value>Outside games</value>
+  </data>
+  <data name="Common_Running" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="Common_NoController" xml:space="preserve">
+    <value>No controller</value>
+  </data>
+  <data name="Common_StartWithWindows" xml:space="preserve">
+    <value>Start with Windows</value>
+  </data>
+  <data name="Common_SpaceStationRunning" xml:space="preserve">
+    <value>Space Station is running</value>
+  </data>
+  <data name="Common_Checked" xml:space="preserve">
+    <value>checked</value>
+  </data>
+  <data name="Common_Unchecked" xml:space="preserve">
+    <value>unchecked</value>
+  </data>
+  <data name="Common_Selected" xml:space="preserve">
+    <value>selected</value>
+  </data>
+  <data name="Status_Handed" xml:space="preserve">
+    <value>Handed to Steam Input</value>
+  </data>
+  <data name="Status_NotHanded" xml:space="preserve">
+    <value>Not handed to Steam Input</value>
+  </data>
+  <data name="Status_FirmwareCantHandOver" xml:space="preserve">
+    <value>Firmware can't hand over</value>
+  </data>
+  <data name="Status_Cable" xml:space="preserve">
+    <value>cable</value>
+  </data>
+  <data name="Status_Dongle" xml:space="preserve">
+    <value>2.4G dongle</value>
+  </data>
+  <data name="Status_ConnectionUnknown" xml:space="preserve">
+    <value>connection ?</value>
+  </data>
+  <data name="Status_Charged" xml:space="preserve">
+    <value>charged</value>
+  </data>
+  <data name="Status_Charging" xml:space="preserve">
+    <value>charging</value>
+  </data>
+  <data name="Status_Battery" xml:space="preserve">
+    <value>battery {0}%</value>
+  </data>
+  <data name="Status_UnknownDevice" xml:space="preserve">
+    <value>Unknown device {0}</value>
+  </data>
+  <data name="Main_LeftTrigger" xml:space="preserve">
+    <value>Left trigger</value>
+  </data>
+  <data name="Main_RightTrigger" xml:space="preserve">
+    <value>Right trigger</value>
+  </data>
+  <data name="Main_Unsaved" xml:space="preserve">
+    <value>Unsaved changes</value>
+  </data>
+  <data name="Main_CopyPreset" xml:space="preserve">
+    <value>Copy preset…</value>
+  </data>
+  <data name="Main_Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Main_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Main_LivePreview" xml:space="preserve">
+    <value>Live preview on the controller</value>
+  </data>
+  <data name="Main_Games" xml:space="preserve">
+    <value>GAMES</value>
+  </data>
+  <data name="Main_DefaultPresetText" xml:space="preserve">
+    <value>Applies when no listed game is running. Both triggers are General, no resistance. This preset can't be edited.</value>
+  </data>
+  <data name="Main_RemoveFromList" xml:space="preserve">
+    <value>Remove from list</value>
+  </data>
+  <data name="Main_DefaultSummary" xml:space="preserve">
+    <value>Default · no resistance</value>
+  </data>
+  <data name="Main_ConfirmSave" xml:space="preserve">
+    <value>Save changes to the "{0}" preset?</value>
+  </data>
+  <data name="Main_DefaultSubtitle" xml:space="preserve">
+    <value>Applies when no listed game is running</value>
+  </data>
+  <data name="Main_ManualSource" xml:space="preserve">
+    <value>Manual · {0}</value>
+  </data>
+  <data name="Main_NoOtherGames" xml:space="preserve">
+    <value>No other games yet</value>
+  </data>
+  <data name="Main_ConfirmRemove" xml:space="preserve">
+    <value>Remove "{0}" and its preset?</value>
+  </data>
+  <data name="Main_RunningApplied" xml:space="preserve">
+    <value>Running · preset applied</value>
+  </data>
+  <data name="Main_PlugIn" xml:space="preserve">
+    <value>plug in the dongle or cable</value>
+  </data>
+  <data name="Trigger_Travel" xml:space="preserve">
+    <value>travel 0–255</value>
+  </data>
+  <data name="Trigger_NoParams" xml:space="preserve">
+    <value>No parameters: the trigger moves freely.</value>
+  </data>
+  <data name="Trigger_VibrationExperimental" xml:space="preserve">
+    <value>Experimental: game rumble goes into the trigger. Verified under Steam Input with tester rumble, not yet in games.</value>
+  </data>
+  <data name="Zone_Normal" xml:space="preserve">
+    <value>No resistance</value>
+  </data>
+  <data name="Zone_Race" xml:space="preserve">
+    <value>Resistance from position {0}</value>
+  </data>
+  <data name="Zone_Recoil" xml:space="preserve">
+    <value>Vibrates past position {0}</value>
+  </data>
+  <data name="Zone_Sniper" xml:space="preserve">
+    <value>Wall at {0}–{1}, then breaks through</value>
+  </data>
+  <data name="Zone_Lock" xml:space="preserve">
+    <value>Hard stop at {0}, axis goes digital</value>
+  </data>
+  <data name="Zone_Vibration" xml:space="preserve">
+    <value>Mirrors the grip rumble</value>
+  </data>
+  <data name="Mode_Normal" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Mode_Race" xml:space="preserve">
+    <value>Racing</value>
+  </data>
+  <data name="Mode_Recoil" xml:space="preserve">
+    <value>Recoil</value>
+  </data>
+  <data name="Mode_Sniper" xml:space="preserve">
+    <value>Sniper</value>
+  </data>
+  <data name="Mode_Lock" xml:space="preserve">
+    <value>Trigger lock</value>
+  </data>
+  <data name="Mode_Vibration" xml:space="preserve">
+    <value>Vibration</value>
+  </data>
+  <data name="Param_Race_start" xml:space="preserve">
+    <value>Damping start position</value>
+  </data>
+  <data name="Param_Race_strength" xml:space="preserve">
+    <value>Damping strength</value>
+  </data>
+  <data name="Param_Recoil_start" xml:space="preserve">
+    <value>Start position</value>
+  </data>
+  <data name="Param_Recoil_press" xml:space="preserve">
+    <value>Start intensity</value>
+  </data>
+  <data name="Param_Recoil_strength" xml:space="preserve">
+    <value>Vibration intensity</value>
+  </data>
+  <data name="Param_Recoil_frequency" xml:space="preserve">
+    <value>Vibration frequency</value>
+  </data>
+  <data name="Param_Recoil_match" xml:space="preserve">
+    <value>Output data starting from the vibration start position</value>
+  </data>
+  <data name="Param_Sniper_start" xml:space="preserve">
+    <value>Breakthrough start position</value>
+  </data>
+  <data name="Param_Sniper_travel" xml:space="preserve">
+    <value>Breakthrough travel</value>
+  </data>
+  <data name="Param_Sniper_resistance" xml:space="preserve">
+    <value>Breakthrough resistance</value>
+  </data>
+  <data name="Param_Sniper_match" xml:space="preserve">
+    <value>Output data starting from the breakthrough start position</value>
+  </data>
+  <data name="Param_Lock_start" xml:space="preserve">
+    <value>Damping start position</value>
+  </data>
+  <data name="Param_Vibration_scale" xml:space="preserve">
+    <value>Intensity coefficient</value>
+  </data>
+  <data name="Param_Vibration_threshold" xml:space="preserve">
+    <value>Vibration threshold</value>
+  </data>
+  <data name="Param_Vibration_stroke" xml:space="preserve">
+    <value>Travel range</value>
+  </data>
+  <data name="Param_Vibration_frequency" xml:space="preserve">
+    <value>Frequency</value>
+  </data>
+  <data name="AddGame_Title" xml:space="preserve">
+    <value>Add a game</value>
+  </data>
+  <data name="AddGame_Search" xml:space="preserve">
+    <value>Search the Steam library</value>
+  </data>
+  <data name="AddGame_Placeholder" xml:space="preserve">
+    <value>Game title</value>
+  </data>
+  <data name="AddGame_NotInSteam" xml:space="preserve">
+    <value>Not a Steam game?</value>
+  </data>
+  <data name="AddGame_NotInSteamHint" xml:space="preserve">
+    <value>Pick its exe — the game is recognised by that process.</value>
+  </data>
+  <data name="AddGame_ChooseExe" xml:space="preserve">
+    <value>Choose exe…</value>
+  </data>
+  <data name="AddGame_Reading" xml:space="preserve">
+    <value>Reading the Steam library…</value>
+  </data>
+  <data name="AddGame_SteamNotFound" xml:space="preserve">
+    <value>Steam not found — add the game by its exe.</value>
+  </data>
+  <data name="AddGame_Found_One" xml:space="preserve">
+    <value>{0} found in {1} Steam library</value>
+  </data>
+  <data name="AddGame_Found_Many" xml:space="preserve">
+    <value>{0} found in {1} Steam libraries</value>
+  </data>
+  <data name="AddGame_ExeTitle" xml:space="preserve">
+    <value>Game exe</value>
+  </data>
+  <data name="AddGame_ExeFilter" xml:space="preserve">
+    <value>Programs (*.exe)|*.exe</value>
+  </data>
+  <data name="AddGame_AlreadyListed" xml:space="preserve">
+    <value>This game is already in the list.</value>
+  </data>
+  <data name="AddGame_InList" xml:space="preserve">
+    <value>Added</value>
+  </data>
+  <data name="Settings_SpaceStationText" xml:space="preserve">
+    <value>It can overwrite the handover flag and trigger effects. Close Space Station and remove it from startup.</value>
+  </data>
+  <data name="Settings_HowToTurnOff" xml:space="preserve">
+    <value>How to turn it off</value>
+  </data>
+  <data name="Settings_HowToSteps" xml:space="preserve">
+    <value>1. Quit Space Station: tray icon → Exit.
+2. Win+R → services.msc → "Flydigi Space Station Service" → Stop.
+3. Same place: Startup type → Manual, so it doesn't start with Windows.
+
+You only need Space Station for firmware updates — start it by hand then.</value>
+  </data>
+  <data name="Settings_Controller" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="Settings_Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="Settings_Connection" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="Settings_NotConnected" xml:space="preserve">
+    <value>not connected</value>
+  </data>
+  <data name="Settings_Firmware" xml:space="preserve">
+    <value>Firmware</value>
+  </data>
+  <data name="Settings_HandoverOn" xml:space="preserve">
+    <value>Handed to Steam Input</value>
+  </data>
+  <data name="Settings_HandoverOff" xml:space="preserve">
+    <value>Not handed to Steam Input</value>
+  </data>
+  <data name="Settings_OwnerNote" xml:space="preserve">
+    <value>Owner: {0}. The flag is set once on connect and never toggled while running.</value>
+  </data>
+  <data name="Settings_FirmwareNote" xml:space="preserve">
+    <value>Needs firmware {0} or newer — update it in Space Station. Triggers still work.</value>
+  </data>
+  <data name="Settings_PlainXInput" xml:space="preserve">
+    <value>Steam sees a plain XInput pad: no gyro, no paddles.</value>
+  </data>
+  <data name="Settings_ReturnToNormal" xml:space="preserve">
+    <value>Return to normal mode</value>
+  </data>
+  <data name="Settings_HandToSteam" xml:space="preserve">
+    <value>Hand to Steam Input</value>
+  </data>
+  <data name="Settings_HandoverWarning" xml:space="preserve">
+    <value>If Steam is running it may give the pad a new identity and a different Steam Input layout set. Continue?</value>
+  </data>
+  <data name="Settings_AutoApply" xml:space="preserve">
+    <value>Auto-apply</value>
+  </data>
+  <data name="Settings_ApplyOnGameStart" xml:space="preserve">
+    <value>Apply the preset when a game starts, General when it exits</value>
+  </data>
+  <data name="Settings_ResendOnReconnect" xml:space="preserve">
+    <value>Resend the preset when the controller reconnects or wakes</value>
+  </data>
+  <data name="Settings_PollInterval" xml:space="preserve">
+    <value>Game check interval</value>
+  </data>
+  <data name="Settings_Poll1" xml:space="preserve">
+    <value>1 second</value>
+  </data>
+  <data name="Settings_Poll2" xml:space="preserve">
+    <value>2 seconds</value>
+  </data>
+  <data name="Settings_Poll5" xml:space="preserve">
+    <value>5 seconds</value>
+  </data>
+  <data name="Settings_PollLabel" xml:space="preserve">
+    <value>Check for running games every</value>
+  </data>
+  <data name="Settings_App" xml:space="preserve">
+    <value>App</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Settings_MinimizeToTray" xml:space="preserve">
+    <value>Closing the window keeps the app in the tray</value>
+  </data>
+  <data name="Settings_NotifyOnPresetChange" xml:space="preserve">
+    <value>Notify when the preset changes</value>
+  </data>
+  <data name="Settings_Export" xml:space="preserve">
+    <value>Export presets</value>
+  </data>
+  <data name="Settings_Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Settings_LogFolder" xml:space="preserve">
+    <value>Log folder</value>
+  </data>
+  <data name="Settings_Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Settings_ImportResult" xml:space="preserve">
+    <value>Games added: {0}, presets updated: {1}.</value>
+  </data>
+  <data name="Tray_StatusHanded" xml:space="preserve">
+    <value>handed to Steam Input</value>
+  </data>
+  <data name="Tray_StatusConnected" xml:space="preserve">
+    <value>connected</value>
+  </data>
+  <data name="Tray_StatusNoController" xml:space="preserve">
+    <value>no controller</value>
+  </data>
+  <data name="Tray_OutsideGames" xml:space="preserve">
+    <value>outside games</value>
+  </data>
+  <data name="Tray_PlugIn" xml:space="preserve">
+    <value>Plug in the dongle or cable</value>
+  </data>
+  <data name="Tray_Now" xml:space="preserve">
+    <value>Now: {0}</value>
+  </data>
+  <data name="Tray_Open" xml:space="preserve">
+    <value>Open Apex Triggers</value>
+  </data>
+  <data name="Tray_Pause" xml:space="preserve">
+    <value>Pause auto-apply</value>
+  </data>
+  <data name="Tray_ResetTriggers" xml:space="preserve">
+    <value>Reset triggers to General</value>
+  </data>
+  <data name="Tray_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Tray_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Notify_PresetApplied" xml:space="preserve">
+    <value>Preset applied: {0}</value>
+  </data>
+  <data name="Notify_HandedTitle" xml:space="preserve">
+    <value>Controller handed to Steam Input</value>
+  </data>
+  <data name="Notify_HandedText" xml:space="preserve">
+    <value>{0} connected ({1}). Steam sees it as an Apex 5 with gyro and paddles.</value>
+  </data>
+  <data name="Notify_FirmwareText" xml:space="preserve">
+    <value>Steam Input needs firmware {0} or newer. Triggers still work.</value>
+  </data>
+  <data name="Notify_SpaceStationText" xml:space="preserve">
+    <value>It can overwrite trigger settings. Open Settings to see how to turn it off.</value>
+  </data>
+</root>

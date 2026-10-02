@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ApexTriggers.App/ApexTriggers.App.csproj" />
+    <Project Path="src/ApexTriggers.Core/ApexTriggers.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ApexTriggers.Core.Tests/ApexTriggers.Core.Tests.csproj" />
+  </Folder>
+</Solution>

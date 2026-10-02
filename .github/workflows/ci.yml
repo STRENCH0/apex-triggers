@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore ApexTriggers.slnx
+
+      # The project keeps zero warnings; CI enforces it.
+      - name: Build
+        run: dotnet build ApexTriggers.slnx -c Release --no-restore -warnaserror
+
+      - name: Test
+        run: dotnet test ApexTriggers.slnx -c Release --no-build --logger "console;verbosity=normal"

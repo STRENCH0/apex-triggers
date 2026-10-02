@@ -1,0 +1,48 @@
+name: Release
+
+# Push a tag like v1.2.0: the app is built with that version, tested, and its exe published as a release.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Version from tag
+        id: version
+        shell: pwsh
+        run: |
+          $version = '${{ github.ref_name }}'.TrimStart('v')
+          if ($version -notmatch '^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$') { throw "Tag must look like v1.2.3, got ${{ github.ref_name }}" }
+          "version=$version" >> $env:GITHUB_OUTPUT
+
+      - name: Test
+        run: dotnet test ApexTriggers.slnx -c Release -p:Version=${{ steps.version.outputs.version }}
+
+      # Self-contained single exe: the .NET runtime is inside, so players need to install nothing.
+      # Compression keeps the download near half the raw runtime size.
+      - name: Publish
+        run: >
+          dotnet publish src/ApexTriggers.App/ApexTriggers.App.csproj -c Release -r win-x64
+          --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=none
+          -p:Version=${{ steps.version.outputs.version }} -o publish
+
+      # The exe goes up as is, under a fixed name, so README can link
+      # releases/latest/download/ApexTriggers.exe for a one-click download.
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          gh release create ${{ github.ref_name }} publish/ApexTriggers.exe
+          --title "Apex Triggers ${{ steps.version.outputs.version }}" --generate-notes
