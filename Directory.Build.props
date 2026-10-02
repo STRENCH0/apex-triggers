@@ -2,12 +2,12 @@
 
   <!-- Shared by every project. Release builds override Version from the git tag (vX.Y.Z). -->
   <PropertyGroup>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>STRENCH0</Authors>
     <Company>STRENCH0</Company>
     <Copyright>Copyright © 2026 STRENCH0</Copyright>
     <RepositoryUrl>https://github.com/STRENCH0/apex-triggers</RepositoryUrl>
-    <!-- Keep "1.0.0" as the shown version instead of "1.0.0+<commit sha>". -->
+    <!-- Keep "1.0.1" as the shown version instead of "1.0.1+<commit sha>". -->
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
   </PropertyGroup>
 

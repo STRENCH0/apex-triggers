@@ -10,6 +10,7 @@
     <RootNamespace>ApexTriggers.App</RootNamespace>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <Product>Apex Triggers</Product>
+    <ApplicationIcon>app.ico</ApplicationIcon>
     <!-- Forms are built in code, not in the designer; its serialization analyzer does not apply. -->
     <NoWarn>$(NoWarn);WFO1000</NoWarn>
     <!-- Strings.resx is English; Russian ships as the ru satellite assembly. -->
