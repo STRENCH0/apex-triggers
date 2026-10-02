@@ -1,0 +1,66 @@
+name: Bug report
+description: Something doesn't work or the triggers don't feel right.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! The firmware, connection and packet log make most bugs reproducible.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, what happened instead.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Apex Triggers version
+      description: Bottom of the Settings window, e.g. 1.0.1.
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Controller firmware
+      description: Settings → Controller → Firmware, e.g. 7.0.4.5.
+    validations:
+      required: true
+  - type: dropdown
+    id: connection
+    attributes:
+      label: Connection
+      options:
+        - 2.4G dongle
+        - Cable
+    validations:
+      required: true
+  - type: dropdown
+    id: steam
+    attributes:
+      label: Steam
+      options:
+        - Steam running, pad handed to Steam Input
+        - Steam running, pad not handed over
+        - Steam not running
+    validations:
+      required: true
+  - type: input
+    id: trigger
+    attributes:
+      label: Trigger settings (if it's about how a trigger feels)
+      description: Which trigger, mode and slider values, e.g. "RT Sniper 50 / 60 / 140, output from start on".
+  - type: textarea
+    id: log
+    attributes:
+      label: Packet log
+      description: |
+        Attach or paste `%APPDATA%\ApexTriggers\logs\packets.log` (Settings → Log folder).
+        It holds only controller packets and app events.
+      render: text
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 24H2

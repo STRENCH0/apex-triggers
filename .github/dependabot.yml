@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Actions used by CI and release.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
+
+  # The app itself has no NuGet dependencies; only the test project does.
+  - package-ecosystem: nuget
+    directory: /tests/ApexTriggers.Core.Tests
+    schedule:
+      interval: monthly
+    groups:
+      test-packages:
+        patterns: ["*"]
