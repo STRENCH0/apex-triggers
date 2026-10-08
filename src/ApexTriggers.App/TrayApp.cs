@@ -90,7 +90,8 @@ internal sealed class TrayApp : ApplicationContext
     private void UpdateTray()
     {
         var state = _controller.Pad.State;
-        var dot = state.Status switch
+        var mode = PadMode();
+        var dot = mode is not null ? Theme.Accent : state.Status switch
         {
             PadStatus.HandedToSteam => Theme.Green,
             PadStatus.Connected => Theme.Warn,
@@ -101,15 +102,26 @@ internal sealed class TrayApp : ApplicationContext
         _trayIcon?.Dispose();
         _trayIcon = icon;
 
-        var status = state.Status switch
-        {
-            PadStatus.HandedToSteam => Strings.Tray_StatusHanded,
-            PadStatus.Connected => Strings.Tray_StatusConnected,
-            _ => Strings.Tray_StatusNoController,
-        };
+        var status = _controller.Pad.Yielding ? Strings.Tray_StatusBridge
+            : mode is not null ? Strings.Tray_StatusXInput
+            : state.Status switch
+            {
+                PadStatus.HandedToSteam => Strings.Tray_StatusHanded,
+                PadStatus.Connected => Strings.Tray_StatusConnected,
+                _ => Strings.Tray_StatusNoController,
+            };
         var game = _controller.ActiveGame?.Name ?? Strings.Tray_OutsideGames;
         var text = $"Apex Triggers {Program.Version} — {status}\n{game}";
         _tray.Text = text.Length > 127 ? text[..127] : text;
+    }
+
+    /// <summary>The bridge's session or a game's XInput hold, as a status phrase; null when neither applies.</summary>
+    private string? PadMode()
+    {
+        var pad = _controller.Pad;
+        if (pad.Yielding) return Strings.Status_Bridge;
+        if (pad.HoldXInput && pad.State.Status == PadStatus.Connected) return Strings.Status_XInputHold;
+        return null;
     }
 
     private void BuildMenu()
@@ -120,7 +132,7 @@ internal sealed class TrayApp : ApplicationContext
             ? $"{Status.Model(info)} · {Status.Connection(info)} · {Status.Battery(info)}"
             : Strings.Common_NoController;
         _menu.Items.Add(Info(pad, bold: true));
-        _menu.Items.Add(Info(state.Status switch
+        _menu.Items.Add(Info(PadMode() is { } mode ? "● " + mode : state.Status switch
         {
             PadStatus.HandedToSteam => "● " + Strings.Status_Handed,
             PadStatus.Connected => "● " + Strings.Status_NotHanded,

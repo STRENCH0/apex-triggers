@@ -83,6 +83,7 @@ public class ConfigTests
             InstallDir = @"C:\Steam\steamapps\common\Pacific Drive",
             Left = TriggerSetting.From(new TriggerEffect(TriggerMode.Race, [20, 90])),
             Right = TriggerSetting.From(new TriggerEffect(TriggerMode.Sniper, [50, 60, 140, 1])),
+            XInputMode = true,
         });
         var path = Path.Combine(Path.GetTempPath(), $"apex-triggers-test-{Guid.NewGuid():N}.json");
         try
@@ -94,12 +95,20 @@ public class ConfigTests
             var game = Assert.Single(loaded.Games);
             Assert.Equal(TriggerMode.Sniper, game.Right.Mode);
             Assert.Equal([50, 60, 140, 1], game.Right.Values);
+            Assert.True(game.XInputMode);
             Assert.Equal("en", loaded.Settings.Language);
         }
         finally
         {
             File.Delete(path);
         }
+    }
+
+    [Fact]
+    public void Games_from_an_older_config_stay_with_steam()
+    {
+        var loaded = JsonSerializer.Deserialize<AppConfig>("""{"games": [{"id": "exe:x.exe", "name": "X"}]}""", ConfigStore.Json)!;
+        Assert.False(Assert.Single(loaded.Games).XInputMode);
     }
 
     [Fact]

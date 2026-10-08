@@ -97,6 +97,12 @@
   <data name="Status_NotHanded" xml:space="preserve">
     <value>Не передан в Steam Input</value>
   </data>
+  <data name="Status_Bridge" xml:space="preserve">
+    <value>Триггерами управляет ApexSenseBridge</value>
+  </data>
+  <data name="Status_XInputHold" xml:space="preserve">
+    <value>Режим XInput для игры</value>
+  </data>
   <data name="Status_FirmwareCantHandOver" xml:space="preserve">
     <value>Прошивка не поддерживает передачу</value>
   </data>
@@ -141,6 +147,14 @@
   </data>
   <data name="Main_LivePreview" xml:space="preserve">
     <value>Живой предпросмотр на геймпаде</value>
+  </data>
+  <data name="Main_XInputMode" xml:space="preserve">
+    <value>Режим XInput, пока игра запущена</value>
+  </data>
+  <data name="Main_XInputModeHint" xml:space="preserve">
+    <value>Пока игра запущена, геймпад не передаётся в Steam Input и работает как обычный XInput-контроллер (без гироскопа и паддлов в Steam). Через несколько секунд после выхода из игры передача возвращается.
+
+Пригодится программам, которым нужен пад в режиме XInput, например ApexSenseBridge: с ним игра сама управляет адаптивными триггерами.</value>
   </data>
   <data name="Main_Games" xml:space="preserve">
     <value>ИГРЫ</value>
@@ -421,6 +435,12 @@ Space Station понадобится только для обновления п
   </data>
   <data name="Tray_StatusNoController" xml:space="preserve">
     <value>нет геймпада</value>
+  </data>
+  <data name="Tray_StatusBridge" xml:space="preserve">
+    <value>триггерами управляет ApexSenseBridge</value>
+  </data>
+  <data name="Tray_StatusXInput" xml:space="preserve">
+    <value>режим XInput для игры</value>
   </data>
   <data name="Tray_OutsideGames" xml:space="preserve">
     <value>вне игр</value>

@@ -97,6 +97,12 @@
   <data name="Status_NotHanded" xml:space="preserve">
     <value>Not handed to Steam Input</value>
   </data>
+  <data name="Status_Bridge" xml:space="preserve">
+    <value>Triggers driven by ApexSenseBridge</value>
+  </data>
+  <data name="Status_XInputHold" xml:space="preserve">
+    <value>XInput mode for the game</value>
+  </data>
   <data name="Status_FirmwareCantHandOver" xml:space="preserve">
     <value>Firmware can't hand over</value>
   </data>
@@ -141,6 +147,14 @@
   </data>
   <data name="Main_LivePreview" xml:space="preserve">
     <value>Live preview on the controller</value>
+  </data>
+  <data name="Main_XInputMode" xml:space="preserve">
+    <value>XInput mode while the game runs</value>
+  </data>
+  <data name="Main_XInputModeHint" xml:space="preserve">
+    <value>While the game runs, the pad is not handed to Steam Input and works as a plain XInput controller (no gyro or paddles in Steam). The handover comes back a few seconds after the game exits.
+
+Useful for tools that need the pad in XInput mode, such as ApexSenseBridge, which lets the game drive the adaptive triggers itself.</value>
   </data>
   <data name="Main_Games" xml:space="preserve">
     <value>GAMES</value>
@@ -421,6 +435,12 @@ You only need Space Station for firmware updates — start it by hand then.</val
   </data>
   <data name="Tray_StatusNoController" xml:space="preserve">
     <value>no controller</value>
+  </data>
+  <data name="Tray_StatusBridge" xml:space="preserve">
+    <value>triggers driven by ApexSenseBridge</value>
+  </data>
+  <data name="Tray_StatusXInput" xml:space="preserve">
+    <value>XInput mode for the game</value>
   </data>
   <data name="Tray_OutsideGames" xml:space="preserve">
     <value>outside games</value>

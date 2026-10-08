@@ -20,6 +20,13 @@ public sealed class TriggerController : IDisposable
     private bool _forceSend;
     private Task? _sender;
     private Task? _poller;
+    private DateTime _xinputGameSeen = DateTime.MinValue;
+
+    /// <summary>
+    /// How long the pad stays in XInput mode after its game is gone. Launchers restart game processes, and
+    /// the bridge's tray keeps its session a couple of seconds after exit to catch exactly that.
+    /// </summary>
+    private static readonly TimeSpan XInputReleaseDelay = TimeSpan.FromSeconds(6);
 
     public TriggerController(AppConfig config, PacketLog log)
     {
@@ -151,6 +158,7 @@ public sealed class TriggerController : IDisposable
             {
                 RunningGames = _monitor.Scan(Config.Games.ToList());
                 if (UpdateActiveGame()) RequestSend();
+                await UpdatePadModeAsync();
             }
             catch (Exception e)
             {
@@ -159,6 +167,27 @@ public sealed class TriggerController : IDisposable
             var seconds = Math.Clamp(Config.Settings.PollSeconds, 1, 10);
             try { await Task.Delay(TimeSpan.FromSeconds(seconds), _stop.Token); } catch (OperationCanceledException) { return; }
         }
+    }
+
+    /// <summary>
+    /// Games marked for XInput hold the pad out of Steam while they run; an ApexSenseBridge session makes us
+    /// stand aside. The hold outlives the game while the bridge still runs: turning the flag on under it
+    /// would pull its controller away mid-cleanup.
+    /// </summary>
+    private async Task UpdatePadModeAsync()
+    {
+        var now = DateTime.UtcNow;
+        var bridge = ApexSenseBridge.SessionActive();
+        if (RunningGames.Any(g => g.XInputMode)) _xinputGameSeen = now;
+        var hold = now - _xinputGameSeen < XInputReleaseDelay || (Pad.HoldXInput && bridge);
+
+        var changed = bridge != Pad.Yielding || hold != Pad.HoldXInput;
+        Pad.SetYielding(bridge);
+        await Pad.SetHoldXInputAsync(hold);
+        if (!changed) return;
+        // The bridge leaves both triggers on Normal when it ends, and our last send no longer stands.
+        if (!bridge) RequestSend(force: true);
+        Changed?.Invoke();
     }
 
     /// <summary>Returns true when the game in force changed.</summary>

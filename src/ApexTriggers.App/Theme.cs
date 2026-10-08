@@ -119,6 +119,29 @@ internal static class Theme
 
     public static Controls.DarkCheck Check(string text, bool value) => new(text, value);
 
+    /// <summary>Tooltip painted in the panel colors and wrapped to a readable width; the stock one is a light box.</summary>
+    public static ToolTip ToolTip()
+    {
+        const int maxWidth = 380;
+        const int pad = 10;
+        var flags = TextFormatFlags.WordBreak | TextFormatFlags.NoPrefix;
+        var tip = new ToolTip { OwnerDraw = true, AutoPopDelay = 30_000, InitialDelay = 400, ReshowDelay = 100 };
+        tip.Popup += (_, e) =>
+        {
+            var text = TextRenderer.MeasureText(tip.GetToolTip(e.AssociatedControl), Small, new Size(maxWidth, int.MaxValue), flags);
+            e.ToolTipSize = new Size(text.Width + pad * 2, text.Height + pad * 2);
+        };
+        tip.Draw += (_, e) =>
+        {
+            e.Graphics.Clear(Raised);
+            using var pen = new Pen(BorderStrong);
+            e.Graphics.DrawRectangle(pen, 0, 0, e.Bounds.Width - 1, e.Bounds.Height - 1);
+            var r = Rectangle.Inflate(e.Bounds, -pad, -pad);
+            TextRenderer.DrawText(e.Graphics, e.ToolTipText, Small, r, TextSoft, flags);
+        };
+        return tip;
+    }
+
     /// <summary>Menu renderer matching the panel colors, for the tray and context menus.</summary>
     public sealed class MenuRenderer() : ToolStripProfessionalRenderer(new MenuColors())
     {

@@ -37,10 +37,11 @@ stay put, and each game gets its own triggers automatically. Space Station isn't
 ## Features
 
 - 🎮 **Native Steam Input** — hands the pad to Steam on connect, so Steam sees an *Apex 5* with gyro and paddles.
-  The flag is set once and never toggled while running, so Steam keeps one stable identity and your layouts.
 - 🎯 **Presets per game** — mode and parameters for the left and right trigger separately, for every game.
 - ⚡ **Auto-apply** — the preset goes on when the game starts and back to *General* when it exits;
   with several games running, the last one started wins.
+- 🔀 **XInput mode per game** — keep the pad out of Steam Input while a chosen game runs, for tools that need a
+  plain XInput controller, such as [ApexSenseBridge](#works-with-apexsensebridge).
 - 🔁 **Survives reconnects** — after sleep, power-off or a dongle replug the current preset is sent again.
 - 👀 **Live preview** — feel the change on the controller while you edit. Commands are sent only after the
   slider is released, so the trigger motors aren't hammered.
@@ -77,8 +78,26 @@ flowchart LR
 ```
 
 Steam and Apex Triggers open the same vendor collection of the pad independently, in shared mode. Steam does
-input, rumble and your layouts; Apex Triggers only writes trigger effects (and, once, the handover flag). Effects
+input, rumble and your layouts; Apex Triggers only writes trigger effects (and the handover flag: on connect, and
+for games in XInput mode). Effects
 live in the pad's working memory and are re-sent whenever the pad reconnects — nothing is written to its flash.
+
+## Works with ApexSenseBridge
+
+[ApexSenseBridge](https://github.com/ReynArts/ApexSenseBridge) shows the Apex 5 to games as a DualSense, so games
+with native DualSense support drive the adaptive triggers themselves. It reads the pad as an ordinary XInput
+controller, so it can't work while the pad is handed to Steam Input. Apex Triggers switches that per game:
+
+1. Add the game in Apex Triggers, tick **XInput mode while the game runs** next to its name, and **Save**.
+2. Set the game up in ApexSenseBridge (its tray or the Playnite extension) as usual, and turn Steam Input off for
+   the game in Steam (*Properties → Controller*), so the game sees only the virtual DualSense.
+3. Launch the game. Apex Triggers takes the pad out of Steam Input and ApexSenseBridge picks it up. If the bridge
+   happened to start first, its tray tries again about 10 seconds later.
+
+While a bridge session runs, Apex Triggers stands aside: it sends no trigger effects and doesn't touch the pad, and
+the status reads *Triggers driven by ApexSenseBridge*. When the session ends, the current preset goes back on, and
+a few seconds after the game exits the pad is handed back to Steam Input. Other games keep Steam Input and your
+presets as usual.
 
 ## Trigger modes
 
@@ -155,7 +174,8 @@ Apex Triggers talks to real hardware, so it is deliberately narrow:
 <summary><b>My Steam Input layouts disappeared after the first handover.</b></summary>
 
 Steam keys layouts to the controller's identity, and turning the handover on while Steam runs can mint a new one.
-Apex Triggers sets the flag once and never toggles it, so after one reconnect the pad keeps a single identity.
+Apex Triggers sets the flag on connect and changes it only when you ask (in Settings, or for a game in XInput
+mode), so after one reconnect the pad keeps a single identity.
 Re-add the layout once if needed; it stays from then on.
 </details>
 

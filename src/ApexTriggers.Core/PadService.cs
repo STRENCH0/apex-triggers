@@ -45,6 +45,15 @@ public sealed class PadService : IDisposable
     /// <summary>Hand the pad to Steam when it connects with the flag off.</summary>
     public bool AutoHandover { get; set; } = true;
 
+    /// <summary>A running game wants plain XInput: the flag stays off, across reconnects too, until released.</summary>
+    public bool HoldXInput { get; private set; }
+
+    /// <summary>
+    /// Another program (ApexSenseBridge) is driving the pad: no handle, no polling, no effects. Its own
+    /// exchanges share the vendor interface, and our replies are broadcast to it.
+    /// </summary>
+    public bool Yielding { get; private set; }
+
     public event Action<PadState>? StateChanged;
 
     /// <summary>The pad (re)appeared and the handshake is done: send the current preset again.</summary>
@@ -71,6 +80,13 @@ public sealed class PadService : IDisposable
 
     private async Task TickAsync()
     {
+        if (Yielding)
+        {
+            await _gate.WaitAsync();
+            try { CloseHandle(); } finally { _gate.Release(); }
+            return;
+        }
+
         if (_device is null)
         {
             if (DateTime.UtcNow < _retryAfter) return;
@@ -117,7 +133,13 @@ public sealed class PadService : IDisposable
                 return;
             }
             var transport = await pad.ReadTransportAsync();
-            if (AutoHandover && transport is { ThirdParty: false } && info.SupportsHandover)
+            if (HoldXInput && transport is { ThirdParty: true })
+            {
+                _log.Info("handover flag on while a game wants XInput, disabling");
+                await pad.SetThirdPartyControlAsync(false);
+                transport = await DelayedReadAsync(pad) ?? transport;
+            }
+            else if (!HoldXInput && AutoHandover && transport is { ThirdParty: false } && info.SupportsHandover)
             {
                 _log.Info("handover flag off, enabling");
                 await pad.SetThirdPartyControlAsync(true);
@@ -148,6 +170,12 @@ public sealed class PadService : IDisposable
         return state;
     }
 
+    private static async Task<TransportState?> DelayedReadAsync(ApexPad pad)
+    {
+        await Task.Delay(1000);
+        return await pad.ReadTransportAsync();
+    }
+
     private async Task RefreshAsync()
     {
         await _gate.WaitAsync();
@@ -166,7 +194,15 @@ public sealed class PadService : IDisposable
                 return;
             }
             _silentRefreshes = 0;
-            state = Describe(info, await pad.ReadTransportAsync());
+            var transport = await pad.ReadTransportAsync();
+            if (HoldXInput && transport is { ThirdParty: true })
+            {
+                // The first try failed or something else turned the flag back on mid-game.
+                _log.Info("handover flag on while a game wants XInput, disabling");
+                await pad.SetThirdPartyControlAsync(false);
+                transport = await DelayedReadAsync(pad) ?? transport;
+            }
+            state = Describe(info, transport);
         }
         finally
         {
@@ -204,7 +240,7 @@ public sealed class PadService : IDisposable
         await _gate.WaitAsync();
         try
         {
-            if (_device is null) return false;
+            if (_device is null || Yielding) return false;
             var ok = await Pad().SetTriggersAsync(left, right, apply);
             _log.Info($"{(apply ? "apply" : "preview")} L={left} R={right} ack={ok}");
             return ok;
@@ -231,7 +267,7 @@ public sealed class PadService : IDisposable
             if (_device is null) return false;
             var pad = Pad();
             var ok = await pad.SetThirdPartyControlAsync(enabled);
-            var transport = enabled ? await WaitForOwnerAsync(pad) : await DelayedRead(pad);
+            var transport = enabled ? await WaitForOwnerAsync(pad) : await DelayedReadAsync(pad);
             if (State.Info is { } info) state = Describe(info, transport);
             return ok;
         }
@@ -240,12 +276,54 @@ public sealed class PadService : IDisposable
             _gate.Release();
             if (state is not null) SetState(state);
         }
+    }
 
-        static async Task<TransportState?> DelayedRead(ApexPad pad)
+    /// <summary>
+    /// Start or stop holding the pad in XInput mode for a game. Starting turns the flag off now; stopping turns
+    /// it back on only if handover is enabled. Sent only when the flag differs, and also while yielding:
+    /// a bridge that started before the flag went off is waiting for exactly this.
+    /// </summary>
+    public async Task SetHoldXInputAsync(bool hold)
+    {
+        if (HoldXInput == hold) return;
+        HoldXInput = hold;
+        _log.Info(hold ? "holding XInput mode for a game" : "XInput hold released");
+        if (!hold && !AutoHandover) return;
+
+        var enabled = !hold;
+        PadState? state = null;
+        await _gate.WaitAsync();
+        try
         {
-            await Task.Delay(1000);
-            return await pad.ReadTransportAsync();
+            if (_device is null) return; // the next connect applies the hold
+            var pad = Pad();
+            var transport = await pad.ReadTransportAsync();
+            if (transport is null || transport.ThirdParty == enabled) return;
+            if (enabled && State.Info is { SupportsHandover: false }) return;
+            await pad.SetThirdPartyControlAsync(enabled);
+            transport = (enabled ? await WaitForOwnerAsync(pad) : await DelayedReadAsync(pad)) ?? transport;
+            if (State.Info is { } info) state = Describe(info, transport);
         }
+        catch (IOException e)
+        {
+            _log.Info("handover change failed: " + e.Message);
+            CloseHandle();
+        }
+        finally
+        {
+            _gate.Release();
+            if (state is not null) SetState(state);
+        }
+    }
+
+    /// <summary>Stand aside for another program driving the pad, or come back. Coming back changes nothing on the pad.</summary>
+    public void SetYielding(bool yielding)
+    {
+        if (Yielding == yielding) return;
+        Yielding = yielding;
+        _log.Info(yielding ? "ApexSenseBridge session started, standing aside" : "ApexSenseBridge session ended");
+        // Refresh soon after coming back: the bridge may have changed the flag or the pad may have slept.
+        if (!yielding) _lastRefresh = DateTime.MinValue;
     }
 
     private ApexPad Pad()

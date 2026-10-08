@@ -23,6 +23,8 @@ internal sealed class MainForm : Form
     private readonly TableLayoutPanel _editor;
     private readonly Panel _defaultInfo;
     private readonly DarkCheck _preview;
+    private readonly DarkCheck _xinput = Theme.Check(Strings.Main_XInputMode, false);
+    private readonly ToolTip _tips = Theme.ToolTip();
     private readonly Label _dirtyLabel = Theme.Label(Strings.Main_Unsaved, Theme.Small, Theme.Warn);
     private readonly FlatButton _copy = new(Strings.Main_CopyPreset);
     private readonly FlatButton _reset = new(Strings.Main_Reset);
@@ -67,12 +69,15 @@ internal sealed class MainForm : Form
         _sub.AutoSize = false;
         _sub.AutoEllipsis = true;
         _sub.Height = 18;
-        header.Controls.AddRange([_icon, _name, _sub, _runningPill]);
-        header.Resize += (_, _) =>
+        _xinput.Font = Theme.Small;
+        _xinput.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        _tips.SetToolTip(_xinput, Strings.Main_XInputModeHint);
+        _xinput.CheckedChanged += (_, _) =>
         {
-            _runningPill.Location = new Point(header.Width - _runningPill.Width - 24, 26);
-            _sub.Width = Math.Max(100, header.Width - 92 - 24 - (_runningPill.Visible ? _runningPill.Width + 16 : 0));
+            if (!_loading && _selected is not null) MarkDirty();
         };
+        header.Controls.AddRange([_icon, _name, _sub, _runningPill, _xinput]);
+        header.Resize += (_, _) => LayoutHeader(header);
 
         // Top padding of 1 keeps the children off the divider line painted at y = 0.
         var bottom = new Panel { Dock = DockStyle.Bottom, Height = 64, BackColor = Theme.Bg, Padding = new Padding(24, 1, 24, 0) };
@@ -153,6 +158,14 @@ internal sealed class MainForm : Form
         RefreshList();
         RefreshStatus();
         SelectGame(null);
+    }
+
+    /// <summary>Running pill on the title line, the XInput check on the subtitle line, both at the right edge.</summary>
+    private void LayoutHeader(Control header)
+    {
+        _runningPill.Location = new Point(header.Width - _runningPill.Width - 24, 16);
+        _xinput.Location = new Point(header.Width - _xinput.Width - 24, 52);
+        _sub.Width = Math.Max(100, header.Width - 92 - 24 - (_xinput.Visible ? _xinput.Width + 16 : 0));
     }
 
     private Panel DefaultInfo()
@@ -254,6 +267,7 @@ internal sealed class MainForm : Form
         _editor.Visible = !isDefault;
         _defaultInfo.Visible = isDefault;
         _copy.Enabled = _reset.Enabled = !isDefault;
+        _xinput.Visible = !isDefault;
         _save.Enabled = false;
         _dirtyLabel.Visible = false;
 
@@ -267,7 +281,9 @@ internal sealed class MainForm : Form
         {
             _left.Setting = game.Left;
             _right.Setting = game.Right;
+            SetXInputCheck(game.XInputMode);
         }
+        LayoutHeader(_xinput.Parent!);
         RefreshRunning();
     }
 
@@ -276,12 +292,24 @@ internal sealed class MainForm : Form
     private void OnEdited()
     {
         if (_selected is null) return;
-        _dirty = true;
-        _save.Enabled = true;
-        _dirtyLabel.Visible = true;
+        MarkDirty();
         if (!_preview.Checked) return;
         _previewDelay.Stop();
         _previewDelay.Start();
+    }
+
+    private void MarkDirty()
+    {
+        _dirty = true;
+        _save.Enabled = true;
+        _dirtyLabel.Visible = true;
+    }
+
+    private void SetXInputCheck(bool value)
+    {
+        _loading = true;
+        _xinput.Checked = value;
+        _loading = false;
     }
 
     /// <summary>
@@ -306,6 +334,7 @@ internal sealed class MainForm : Form
         if (_selected is null) return;
         _selected.Left = _left.Setting;
         _selected.Right = _right.Setting;
+        _selected.XInputMode = _xinput.Checked;
         _dirty = false;
         _previewDelay.Stop();
         _save.Enabled = false;
@@ -324,6 +353,7 @@ internal sealed class MainForm : Form
         {
             _left.Setting = _selected.Left;
             _right.Setting = _selected.Right;
+            SetXInputCheck(_selected.XInputMode);
         }
         _save.Enabled = false;
         _dirtyLabel.Visible = false;
@@ -438,7 +468,7 @@ internal sealed class MainForm : Form
             p.PrimaryFont = Theme.Small;
             p.Primary = active ? Strings.Main_RunningApplied : Strings.Common_Running;
         });
-        _runningPill.Location = new Point(_runningPill.Parent!.Width - _runningPill.Width - 24, 26);
+        LayoutHeader(_runningPill.Parent!);
     }
 
     private void RefreshStatus()
@@ -461,12 +491,21 @@ internal sealed class MainForm : Form
                 p.Secondary = Strings.Main_PlugIn;
             }
         });
-        _handoverPill.Visible = state.Status != PadStatus.NotConnected;
+        var pad = _controller.Pad;
+        _handoverPill.Visible = state.Status != PadStatus.NotConnected || pad.Yielding;
         _handoverPill.Update(p =>
         {
             p.Outline = null;
             p.PrimaryFont = Theme.Small;
-            if (state.Status == PadStatus.HandedToSteam)
+            if (pad.Yielding || pad.HoldXInput && state.Status == PadStatus.Connected)
+            {
+                p.Fill = Theme.AccentWash;
+                p.TextColor = Theme.AccentSoft;
+                p.CheckMark = false;
+                p.Dot = Theme.Accent;
+                p.Primary = pad.Yielding ? Strings.Status_Bridge : Strings.Status_XInputHold;
+            }
+            else if (state.Status == PadStatus.HandedToSteam)
             {
                 p.Fill = Theme.GreenWash;
                 p.TextColor = Theme.GreenText;
@@ -504,6 +543,7 @@ internal sealed class MainForm : Form
         {
             _controller.Changed -= OnControllerChanged;
             _previewDelay.Dispose();
+            _tips.Dispose();
         }
         base.Dispose(disposing);
     }

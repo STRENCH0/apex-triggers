@@ -242,7 +242,7 @@ internal sealed class SettingsForm : Form
         {
             var existing = _controller.Config.Games.FirstOrDefault(g => g.Id == game.Id);
             if (existing is null) { _controller.Config.Games.Add(game); added++; }
-            else { existing.Left = game.Left; existing.Right = game.Right; updated++; }
+            else { existing.Left = game.Left; existing.Right = game.Right; existing.XInputMode = game.XInputMode; updated++; }
         }
         _controller.ConfigChanged();
         MessageBox.Show(this, L.F(Strings.Settings_ImportResult, added, updated), Text);

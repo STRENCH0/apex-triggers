@@ -40,9 +40,8 @@ Target: `net10.0-windows`. If `dotnet` has no SDK on PATH, a user-local SDK may 
   side reset the other side's 81 effect when sent after it.
 - **ACK success byte is raw `[6]`**: `04 5A A5 <cmd> 01 00 <success> <echo…>`. Command 18 has no success byte.
   An ACK only means "parsed"; whether an effect works is checked by feel.
-- **Don't toggle the handover flag (command 17) on your own.** Each off→on while Steam runs gives the pad a new
-  Steam identity and a different Steam Input layout set. Set it once on connect; turn it off only on an explicit
-  user action.
+- **The handover flag (command 17) follows the user's choice.** Set it on connect when handover is enabled; change
+  it otherwise only because the user asked for it (a button, a setting), never as a side effect.
 - **Don't stream effects.** Each 81/82 re-seats the trigger motors. UI changes are debounced (sent once the
   slider is released and idle), sends are latest-wins, identical effects are not resent.
 - **Share the device.** Open HID with `FILE_SHARE_READ | FILE_SHARE_WRITE`; never send Steam's acquire command

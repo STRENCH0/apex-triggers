@@ -34,6 +34,11 @@ public sealed class GamePreset
     public string? ExePath { get; set; }
     public TriggerSetting Left { get; set; } = new();
     public TriggerSetting Right { get; set; } = new();
+    /// <summary>
+    /// Keep the pad out of Steam (handover flag off, plain XInput) while this game runs, for ApexSenseBridge,
+    /// which reads the pad as an XInput controller.
+    /// </summary>
+    public bool XInputMode { get; set; }
 
     [JsonIgnore]
     public bool IsSteam => SteamAppId is not null;
