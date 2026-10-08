@@ -330,12 +330,12 @@ internal sealed class SettingsForm : Form
             Margin = new Padding(0, 0, 0, 16);
             // Width comes from the dialog (FitWidths), height from the rows. An auto-sized panel
             // around a docked table collapses to zero width, which is what broke this dialog.
+            // The rows are sized by hand too: auto-sized, they could be left at height 0 when the
+            // dialog's scrollbar appeared mid-layout and changed every card's width.
             SetStyle(ControlStyles.ResizeRedraw, true);
             _rows = new TableLayoutPanel
             {
                 ColumnCount = 2,
-                AutoSize = true,
-                AutoSizeMode = AutoSizeMode.GrowAndShrink,
                 Location = new Point(Padding.Left, Padding.Top),
                 BackColor = _fill,
                 Margin = new Padding(0),
@@ -344,16 +344,16 @@ internal sealed class SettingsForm : Form
             _rows.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             Controls.Add(_rows);
             Resize += (_, _) => FitRows();
-            _rows.SizeChanged += (_, _) => Height = _rows.Height + Padding.Vertical;
         }
 
         private void FitRows()
         {
             var width = Math.Max(100, Width - Padding.Horizontal);
-            _rows.MinimumSize = new Size(width, 0);
-            _rows.MaximumSize = new Size(width, 0);
             foreach (Control c in _rows.Controls)
                 if (c is DarkCheck check) check.WrapWidth = width - 4;
+            var height = _rows.GetPreferredSize(new Size(width, 0)).Height;
+            _rows.Size = new Size(width, height);
+            Height = height + Padding.Vertical;
         }
 
         public void AddTitle(string title)
@@ -371,6 +371,7 @@ internal sealed class SettingsForm : Form
             _rows.SetColumnSpan(c, 2);
             if (c.Dock == DockStyle.Top) c.Dock = DockStyle.Fill;
             else if (c is not DarkCheck) c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            FitRows();
         }
 
         public void AddRow(Control left, Control right)
@@ -382,6 +383,7 @@ internal sealed class SettingsForm : Form
             right.Margin = new Padding(12, 2, 0, 2);
             _rows.Controls.Add(left, 0, row);
             _rows.Controls.Add(right, 1, row);
+            FitRows();
         }
 
         protected override void OnPaint(PaintEventArgs e)
